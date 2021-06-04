@@ -2,12 +2,13 @@ package com.umanizales.apibatallanaval.model;
 
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
+import com.umanizales.apibatallanaval.model.entities.Barco;
+import com.umanizales.apibatallanaval.model.entities.Usuario;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -37,9 +38,16 @@ public class ListaDE implements Serializable {
     }
 
     public void adicionarNodoAlInicio(Object dato){
-        if(cabeza == null)
+        if(cabeza ==null)
         {
-
+            cabeza = new NodoDE(dato);
+        }
+        else
+        {
+            NodoDE temp= new NodoDE(dato);
+            temp.setSiguiente(cabeza);
+            cabeza.setAnterior(temp);
+            cabeza= temp;
         }
 
     }
@@ -75,6 +83,7 @@ public class ListaDE implements Serializable {
         }
         return false;
     }
+
 
 
 }
